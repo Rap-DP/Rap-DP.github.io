@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2-TECHNICAL</title>
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 175px;;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 50%;
+        margin: auto;
+    }
+    
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .day-button {
+        width: 140px;
+        height: 70px;
+        padding: 10px;
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: transform 0.2s;
+    }
+    
+    .day-button:hover {
+        transform: scale(1.1);
+    }
+    
+    #mon { background: #91a8db;}
+    #tue { background: #d09292;}
+    #wed{ background: #c094cc;}
+    #thu{ background: #6bbb9f;}
+    #fri { background: #c37892;}
+    #sat { background: #da8638;}
+    #sun { background: #be4066; }
+    
+    .box {
+        width: 450px;
+        height: 450px;
+        position: absolute;
+        right: 35%;
+        border: 10px solid transparent;
+        border-radius: 20px;
+        transition: 
+        top 1s ease-in-out, opacity 1s ease-in-out, border-color 1s ease-in-out, background-color 1s ease-in-out;
+    }
+    
+    
+    
+</style>
+<body>
+
+    <div class="container">
+        <div class="button-container">
+            <button id="mon" class="day-button" onclick="animateBox('#91a8db')">Monday</button>
+            <button id="tue" class="day-button" onclick="animateBox('#d09292')">Tuesday</button>
+            <button id="wed" class="day-button" onclick="animateBox('#c094cc')">Wednesday</button>
+            <button id="thu" class="day-button" onclick="animateBox('#6bbb9f')">Thursday</button>
+            <button id="fri" class="day-button" onclick="animateBox('#c37892')">Friday</button>
+            <button id="sat" class="day-button" onclick="animateBox('#da8638')">Saturday</button>
+            <button id="sun" class="day-button" onclick="animateBox('#be4066')">Sunday</button>
+        </div>
+
+        <div id="box"></div> 
+    </div>
+
+    <script>
+let isAnimating = false; 
+
+function animateBox(color) {
+        if (isAnimating) return; 
+        isAnimating = true;
+
+        let container = document.querySelector(".container");
+
+        let newBox = document.createElement("div");
+        newBox.classList.add("box");
+        newBox.style.borderColor = color;
+        newBox.style.backgroundColor = color; 
+
+        newBox.style.top = "-470px";
+        newBox.style.opacity = "500";
+
+        container.appendChild(newBox);
+
+        setTimeout(() => {
+            newBox.style.top = "200px";
+            newBox.style.opacity = "500";
+            newBox.style.backgroundColor = "transparent"; 
+        }, 10);
+
+        let oldBox = document.querySelector(".box:not(:last-child)");
+        if (oldBox) {
+            oldBox.style.top = "-470px";
+            oldBox.style.opacity = "500";
+            oldBox.style.backgroundColor = oldBox.style.borderColor; 
+            setTimeout(() => oldBox.remove(), 1000);
+        }
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, 1000);
+    }
+
+    </script>
+
+</body>
+</html>
