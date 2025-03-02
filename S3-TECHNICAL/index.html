@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3-TECHNICAL</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to top, #7941b9, #ece2b1);
+        }
+        .title {
+            font-size: 60px;
+            font-weight: bold;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 40px;
+        }
+        .calcu_container {
+            width: 300px;
+            background: #252121;
+            padding: 25px;
+            border-radius: 20px;
+        }
+        .calcu_screen_container {
+            width: 85%;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: left;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: #948a8a;
+            border-radius: 10px;
+            color: #333030;
+        }
+        .calcu_num_buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            height: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            background: #b99ed8;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button:active { background: #6b6a6a; }
+    </style>
+</head>
+<body>
+    <div class="title">Calculator</div>
+    <div class="calcu_container">
+        <input type="text" class="calcu_screen_container" id="calcu_screen_container" disabled>
+        <div class="calcu_num_buttons">
+            <button onclick="clr()">C</button>
+            <button onclick="bck()">&lt;</button>
+            <button onclick="app('/')">/</button>
+            <button onclick="app('*')">x</button>
+            <button onclick="app('7')">7</button>
+            <button onclick="app('8')">8</button>
+            <button onclick="app('9')">9</button>
+            <button onclick="app('-')">-</button>
+            <button onclick="app('4')">4</button>
+            <button onclick="app('5')">5</button>
+            <button onclick="app('6')">6</button>
+            <button onclick="app('+')">+</button>
+            <button onclick="app('1')">1</button>
+            <button onclick="app('2')">2</button>
+            <button onclick="app('3')">3</button>
+            <button onclick="calc()">=</button>
+            <button onclick="app('0')" style="grid-column: span 2;">0</button>
+            <button onclick="app('.')">.</button>
+            
+        </div>
+    </div>
+    <script>
+        function app(value) { calcu_screen_container.value += value; }
+        function clr() { calcu_screen_container.value = ''; }
+        function bck() { calcu_screen_container.value = calcu_screen_container.value.slice(0, -1); }
+        function calc() { 
+        try {
+            calcu_screen_container.value = eval(calcu_screen_container.value) || ''; 
+        } catch {
+            calcu_screen_container.value = 'Error';
+        }
+    }
+    </script>
+</body>
+</html>
